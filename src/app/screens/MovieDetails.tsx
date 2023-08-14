@@ -5,40 +5,40 @@ import {
   Text,
   ScrollView,
   ActivityIndicator,
-} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {StackNavigationProp} from '@react-navigation/stack';
+} from "react-native";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 import {
   MovieDetailsScreenRouteProp,
   RootStackParamList,
-} from '../types/screenTypes';
+} from "../types/screenTypes";
 import {
   selectContentFavoriteMovies,
   addToFavorites,
   removeFromFavorites,
-} from '../state/content/contentSlice';
-import {AppDispatch} from '../state/store';
-import Button from '../components/Button';
-import useFetchData from '../utils/customHooks';
-import {selectUserId} from '../state/auth/authSlice';
-import {GlobalStyles, API} from '../constants/constants';
-import {MovieDetailsProps, MovieCardProps} from '../types/dataTypes';
-import SimilarMoviesByGenre from '../components/SimilarMoviesByGenre';
+} from "../state/content/contentSlice";
+import { AppDispatch } from "../state/store";
+import Button from "../components/Button";
+import useFetchData from "../utils/customHooks";
+import { selectUserId } from "../state/auth/authSlice";
+import { GlobalStyles, API } from "../constants/constants";
+import { MovieDetailsProps, MovieCardProps } from "../types/dataTypes";
+import SimilarMoviesByGenre from "../components/SimilarMoviesByGenre";
 
 const mockVideoUrl =
-  'https://imdb-video.media-imdb.com/vi4071081753/1434659607842-pgv4ql-1688675519113.mp4?Expires=1690029430&Signature=piBGrYPng1Bqyjx1U~WXESwuXr2cgddaXYXoZV8Nutx57G9CQko7n2qiGBNnj9avcvZZJw15zUqNpTncYytPa8E0GWZ3K2vvk0VBhVhKn6StMgJ~QGT-DK2QqNy6VDkYaakhx9YOaTE6thdcIj5-0DmYuxoAxcxbtptCvYRV27h7E6t8PjPHwuZL5xl0Z5Iduv~Edb9jJVfM9LhtNJHScNnsYT21~Aehd5rivp0cUz76~tXc1VRxDLLsvv6xnY0C0Z8WDysShOLghjl4L67VDFRoejOx8f1h~Vqatkjb4n3JFAK7XgTluU-eY0VVVE3m3nyriOrIRQoTrW4fOBrX2g__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA';
+  "https://imdb-video.media-imdb.com/vi212714009/1434659607842-pgv4ql-1650547759492.mp4?Expires=1692086716&Signature=IYL~-8Uk3Cly6Vxe-Uqzyd6X09v0NfaFzMhF1RdK~-LABKcliZFmznJocUeIXEYrlESh93aAA02pUgUvpN1hdLHd21SBFPHQDV33x8f8KkBmWKT0D0aQARE0GljQ47LG-N5mGeiARxPW-ztIwUCdwJTj-zmyb9xif3BVJjkm-FYH516VE0Jxz0CqSXQk0TOAm4Svm8nmhRhq4975nRv9Nwt3G1JTeJ6pncx3kdB~9KrinpRL14c4CuktuqsgL1ljIGd0A52aS6Fm8JRyGeh0UT35yEh6VXGIt~NjQyQoV3bZacoreC4Ka6~Wb22s0u8AD~DHdm7ilzo-if6oqa~QWA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA";
 
 interface MovieRouteProps {
   route: MovieDetailsScreenRouteProp;
-  navigation: StackNavigationProp<RootStackParamList, 'MovieDetails'>;
+  navigation: StackNavigationProp<RootStackParamList, "MovieDetails">;
 }
 
-const MovieDetails = ({route, navigation}: MovieRouteProps) => {
+const MovieDetails = ({ route, navigation }: MovieRouteProps) => {
   const [movieDetails, setMovieDetails] = useState<MovieDetailsProps>();
 
-  const {movieId} = route.params;
+  const { movieId } = route.params;
   const dispatch = useDispatch<AppDispatch>();
   const favoriteMovies = useSelector(selectContentFavoriteMovies);
   const userId = useSelector(selectUserId);
@@ -56,8 +56,8 @@ const MovieDetails = ({route, navigation}: MovieRouteProps) => {
   } = movieDetails ?? {};
 
   // fetching movie details data by movieId
-  const {data, isLoading, error} = useFetchData(
-    API.getMovieDetailsById(movieId),
+  const { data, isLoading, error } = useFetchData(
+    API.getMovieDetailsById(movieId)
   );
 
   // setting movieData to state
@@ -67,18 +67,18 @@ const MovieDetails = ({route, navigation}: MovieRouteProps) => {
     }
   }, [data]);
 
-  const isInFavorites = favoriteMovies.some(movie => movie.id === id);
+  const isInFavorites = favoriteMovies.some((movie) => movie.id === id);
 
   // setting Header title
   useEffect(() => {
     if (movieDetails) {
-      navigation.setOptions({title: movieDetails.title});
+      navigation.setOptions({ title: movieDetails.title });
     }
   }, [movieDetails, navigation]);
 
   const handlePlayMovie = () => {
     if (!mockVideoUrl) return;
-    navigation.navigate('MovieTrailer', {
+    navigation.navigate("MovieTrailer", {
       // videoUrl
       mockVideoUrl,
       trailerName: `${title} trailer`,
@@ -93,7 +93,7 @@ const MovieDetails = ({route, navigation}: MovieRouteProps) => {
     };
 
     if (!userId) {
-      navigation.navigate('AuthStack');
+      navigation.navigate("AuthStack");
     } else {
       isInFavorites
         ? dispatch(removeFromFavorites(movieData))
@@ -104,7 +104,7 @@ const MovieDetails = ({route, navigation}: MovieRouteProps) => {
   return (
     <View>
       {isLoading && (
-        <ActivityIndicator size={'large'} color={GlobalStyles.colors.primary} />
+        <ActivityIndicator size={"large"} color={GlobalStyles.colors.primary} />
       )}
       {movieDetails && (
         <ScrollView style={styles.movieDetailsContainer}>
@@ -122,16 +122,15 @@ const MovieDetails = ({route, navigation}: MovieRouteProps) => {
             </Text>
             <View style={styles.statsContainer}>
               <Text
-                style={
-                  styles.text
-                }>{`\u2605 ${rating}  |  ${duration}  |  ${year}`}</Text>
+                style={styles.text}
+              >{`\u2605 ${rating}  |  ${duration}  |  ${year}`}</Text>
             </View>
             <View style={styles.hrContainer}>
               <View style={styles.hr}></View>
             </View>
             <View>
               <Text style={[styles.text, styles.genresContainer]}>
-                {genre!.join(' | ')}
+                {genre!.join(" | ")}
               </Text>
             </View>
             <View style={styles.descriptionContainer}>
@@ -144,14 +143,14 @@ const MovieDetails = ({route, navigation}: MovieRouteProps) => {
             </View>
             <View style={styles.btnContainer}>
               <Button onPress={handlePlayMovie} style={styles.button}>
-                {!mockVideoUrl ? 'No Trailer' : 'Watch Trailer'}
+                {!mockVideoUrl ? "No Trailer" : "Watch Trailer"}
               </Button>
               <Button onPress={handleFavorites} style={styles.button}>
                 {isInFavorites
-                  ? 'Remove from ❤️'
+                  ? "Remove from ❤️"
                   : userId
-                  ? 'Add to ❤️'
-                  : 'Login to Add to ❤️'}
+                  ? "Add to ❤️"
+                  : "Login to Add to ❤️"}
               </Button>
             </View>
             <SimilarMoviesByGenre
@@ -172,21 +171,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   imgContainer: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
     marginBottom: 10,
   },
-  img: {width: 350, height: 430, borderRadius: 20},
+  img: { width: 350, height: 430, borderRadius: 20 },
   titleTextH3: {
     fontSize: 21,
     color: GlobalStyles.colors.mainText,
-    textAlign: 'center',
-    fontWeight: '500',
+    textAlign: "center",
+    fontWeight: "500",
   },
   titleTextH4: {
     fontSize: 15,
     color: GlobalStyles.colors.mainText,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   marginBottom15: {
     marginBottom: 15,
@@ -202,26 +201,26 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   decriptionText: {
-    textAlign: 'justify',
+    textAlign: "justify",
   },
   statsContainer: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
     marginBottom: 15,
   },
   hrContainer: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 15,
   },
   hr: {
     height: 1,
-    width: '60%',
+    width: "60%",
     backgroundColor: GlobalStyles.colors.primary,
   },
 
   genresContainer: {
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 20,
   },
   genreItem: {
@@ -230,15 +229,15 @@ const styles = StyleSheet.create({
 
   btnContainer: {
     flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
+    justifyContent: "center",
+    flexDirection: "row",
     gap: 30,
     marginBottom: 20,
   },
   button: {
     borderTopWidth: 2,
     borderTopColor: GlobalStyles.colors.primary,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
   },
 });
 

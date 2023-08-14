@@ -18,6 +18,9 @@
     },
     "@react-navigation/native-stack": {
       "version": "^6.9.13"
+    },
+    "@react-navigation/bottom-tabs": {
+      "version": "6.5.8"
     }
   },
   "extendsTemplate": "@rnv/template-starter/renative.json",
