@@ -1,0 +1,39 @@
+{
+  "platforms": {},
+  "plugins": {
+    "@react-native-community/cli-platform-ios": "source:rnv",
+    "@react-native-community/cli": "source:rnv",
+    "react-native-tvos": "source:rnv",
+    "react-native-web": "source:rnv",
+    "next": "source:rnv",
+    "react-redux": "source:rnv",
+    "@reduxjs/toolkit": "source:rnv",
+    "@react-navigation": "source:rnv",
+    "react-native-safe-area-context": "source:rnv",
+    "react-native-screens": "source:rnv",
+    "react-native-video": "source:rnv",
+    "react-native-vector-icons": "source:rnv",
+    "firebase": {
+      "version": "^9.22.0"
+    },
+    "@react-navigation/native-stack": {
+      "version": "^6.9.13"
+    }
+  },
+  "extendsTemplate": "@rnv/template-starter/renative.json",
+  "projectName": "renative",
+  "workspaceID": "rnv",
+  "defaults": {
+    "title": "renative",
+    "id": "com.mycompany.renative",
+    "supportedPlatforms": ["android", "androidtv", "web"]
+  },
+  "engines": {},
+  "templates": {
+    "@rnv/template-starter": {
+      "version": "0.37.1"
+    }
+  },
+  "currentTemplate": "@rnv/template-starter",
+  "isMonorepo": false
+}
