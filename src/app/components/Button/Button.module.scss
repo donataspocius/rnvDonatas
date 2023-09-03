@@ -1,0 +1,31 @@
+@import "../../constants/web_constants/styleConstants.scss";
+
+.button {
+  background-color: $primary;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  color: $mainText;
+}
+
+.button:hover {
+  background-color: $primaryLight;
+}
+
+.button--small {
+  font-size: 15px;
+  height: 30px;
+  padding: 5px 20px;
+}
+
+.button--big {
+  font-size: 19px;
+  max-height: 30px;
+  padding: 5px 30px;
+}
+
+.button:disabled {
+  background: gray;
+  color: $mainText;
+  cursor: not-allowed;
+}

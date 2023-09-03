@@ -1,0 +1,40 @@
+@import "../../constants/web_constants/styleConstants.scss";
+
+.paginationContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.pagination {
+  display: flex;
+  gap: 10px;
+
+  button {
+    background-color: transparent;
+    border: 1px solid $greyText;
+    color: $greyText;
+    border-radius: 10px;
+    padding: 7px 7px;
+    min-width: 50px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  button:hover {
+    border: 1px solid $primaryLight;
+    color: $primaryLight;
+  }
+
+  .active {
+    color: $primary;
+    border: 1px solid $primary;
+  }
+}
+
+.selectLimit span {
+  margin-right: 10px;
+}

@@ -1,0 +1,23 @@
+.heroBanner {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  //   background-image: url("../../../assets/web_images/hero.jpg");
+  background-size: cover;
+  display: flex;
+  flex-shrink: 0;
+
+  h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 50px;
+  }
+}
+
+.heroBannerContent {
+  margin: auto;
+  text-align: center;
+  font-weight: 500;
+}

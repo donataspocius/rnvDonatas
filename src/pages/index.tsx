@@ -1,13 +1,10 @@
-import React from "react";
-import { View } from "react-native";
-import HomeScreen from "../app/screens/Home";
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import Hero from "../app/components/Hero/Hero";
 
-const Page = () => {
-  return (
-    <View>
-      <HomeScreen />
-    </View>
-  );
+const Home: NextPage = () => {
+  return <Hero />;
 };
 
-export default Page;
+export default Home;

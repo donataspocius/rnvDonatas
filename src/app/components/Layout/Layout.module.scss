@@ -1,0 +1,15 @@
+@import "../../constants/web_constants/styleConstants.scss";
+
+.Layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $mainBackground;
+}
+
+.Layout__main {
+  flex: 1;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+}

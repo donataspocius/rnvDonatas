@@ -1,0 +1,87 @@
+@import "../../app/constants/web_constants/styleConstants.scss";
+
+.hero {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  //   background-image: url("../../public/assets/images/hero.jpg");
+  background-size: cover;
+}
+
+.mainContainer {
+  margin: 200px auto;
+  max-width: 400px;
+  align-content: center;
+
+  nav {
+    display: flex;
+  }
+}
+
+.NavLink {
+  background-color: $primary;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 9px 47px;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  flex: auto;
+}
+
+.active {
+  background-color: rgba(white, 0.7);
+  text-transform: uppercase;
+  font-size: 17px;
+  color: black;
+  font-weight: 700;
+  padding: 9px 47px;
+  text-decoration: none;
+  flex: auto;
+}
+
+.formOutlet {
+  background-color: rgba(white, 0.7);
+  color: black;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 26px 30px 18px 30px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 60px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-around;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  max-width: 826px;
+  align-content: center;
+  margin: 0 auto;
+
+  button {
+    margin-bottom: 50px;
+  }
+
+  button:hover {
+    background-color: $primary;
+  }
+}
+
+.error {
+  text-align: center;
+  color: red;
+  margin-bottom: 20px;
+}

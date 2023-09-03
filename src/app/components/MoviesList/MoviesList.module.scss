@@ -1,0 +1,42 @@
+@import "../../constants/web_constants/styleConstants.scss";
+
+.mainContainer {
+  margin-top: 50px;
+  margin-left: 30px;
+}
+
+.similarMoviesContainer {
+  display: flex;
+  overflow: scroll;
+  gap: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+
+  a {
+    color: $mainText;
+  }
+}
+
+.title {
+  font-size: 25px;
+}
+
+.hrContainer {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+}
+.hr {
+  height: 2px;
+  width: 100%;
+  background-color: $primary;
+  margin-right: auto;
+  margin-left: auto;
+}

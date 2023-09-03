@@ -1,0 +1,38 @@
+@import "../../app/constants/web_constants/styleConstants.scss";
+
+.genresContainer {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 9px;
+  margin-bottom: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  li {
+    border: 1px solid $greyText;
+    color: $greyText;
+    border-radius: 10px;
+    padding: 7px 7px;
+    min-width: 70px;
+    text-align: center;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  li:hover {
+    border: 1px solid $primaryLight;
+    color: $primaryLight;
+  }
+
+  .active {
+    color: $primary;
+    border: 1px solid $primary;
+  }
+}
+
+.movieCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}

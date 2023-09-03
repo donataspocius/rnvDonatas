@@ -60,7 +60,9 @@
         "react-native-vector-icons": "9.2.0",
         "react-native-video": "5.2.1",
         "react-native-web": "0.18.9",
-        "react-redux": "7.2.8"
+        "react-redux": "7.2.8",
+        "sass": "^1.63.6",
+        "react-icons": "^4.10.1"
     },
     "main": "index.js",
     "repository": "https://github.com/donataspocius/rnvDonatas.git",
