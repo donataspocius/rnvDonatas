@@ -1,17 +1,11 @@
-// import React from "react";
-// import App from "../app";
-
-// const Page = () => <App />;
-// export default Page;
-
 import React from "react";
 import { View } from "react-native";
-import { Home } from "../app/screens";
+import HomeScreen from "../app/screens/Home";
 
 const Page = () => {
   return (
     <View>
-      <Home />
+      <HomeScreen />
     </View>
   );
 };
