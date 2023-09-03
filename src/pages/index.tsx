@@ -5,7 +5,15 @@
 // export default Page;
 
 import React from "react";
+import { View } from "react-native";
+import { Home } from "../app/screens";
+
 const Page = () => {
-  return <div>Home</div>;
+  return (
+    <View>
+      <Home />
+    </View>
+  );
 };
+
 export default Page;

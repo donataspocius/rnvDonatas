@@ -3,7 +3,9 @@
   "plugins": {
     "@react-native-community/cli-platform-ios": "source:rnv",
     "@react-native-community/cli": "source:rnv",
-    "react-native-tvos": "source:rnv",
+    "react-native-tvos": {
+      "version": "0.71.12-0"
+    },
     "react-native-web": "source:rnv",
     "next": "source:rnv",
     "react-redux": "source:rnv",
