@@ -1,5 +1,4 @@
 import Link from "next/link";
-import NextImage from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 
 import logo from "../../../assets/web_images/reflixLogo.png";
@@ -22,12 +21,12 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      {/* <Link href={"/"}>
-        <NextImage className={styles.logo} src={logo} alt="company logo" />
-      </Link> */}
+      <Link href={"/"}>
+        <img className={styles.logo} src={logo} alt="company logo" />
+      </Link>
       <div className={styles.navContainer}>
         <NavLink href={userId ? "/library" : "/login"}>Library</NavLink>
-        <NavLink href="/movies">Browse</NavLink>
+        <NavLink href={"/movies"}>Browse</NavLink>
         <Button
           to={userId ? "/" : "/login"}
           size={"big"}

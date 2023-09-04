@@ -1,86 +1,86 @@
-@import '../../../constants/styleConstants.scss';
+@import "../../../app/constants/web_constants/styleConstants.scss";
 
 .mainContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .imgContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    img {
-        width: 350px;
-    }
+  img {
+    width: 350px;
+  }
 }
 
 .detailsContainer {
-    max-width: 350px;
+  max-width: 350px;
 }
 
 .dataContainer {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 
-    h2 {
-        font-size: 29px;
-        font-weight: 600;
-        text-transform: uppercase;
-        margin-top: 30px;
-        margin-bottom: 20px;
-        text-align: center;
-    }
+  h2 {
+    font-size: 29px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
 }
 
 .movieMetricsContainer {
+  display: flex;
+  gap: 20px;
+  color: $greyText;
+  margin-bottom: 15px;
+  justify-content: center;
+  align-items: center;
+
+  p {
     display: flex;
-    gap: 20px;
-    color: $greyText;
-    margin-bottom: 15px;
-    justify-content: center;
     align-items: center;
 
-    p {
-        display: flex;
-        align-items: center;
-
-        .icon {
-            display: flex;
-            align-items: center;
-            margin-right: 2px;
-        }
+    .icon {
+      display: flex;
+      align-items: center;
+      margin-right: 2px;
     }
+  }
 }
 
 .hrContainer {
-    margin-bottom: 30px;
-    display: flex;
+  margin-bottom: 30px;
+  display: flex;
 }
 .hr {
-    height: 1px;
-    width: 75%;
-    background-color: $primary;
-    margin-left: auto;
-    margin-right: auto;
+  height: 1px;
+  width: 75%;
+  background-color: $primary;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .genre {
-    margin-bottom: 15px;
-    color: $greyText;
-    text-align: center;
+  margin-bottom: 15px;
+  color: $greyText;
+  text-align: center;
 
-    span {
-        margin-right: 10px;
-    }
+  span {
+    margin-right: 10px;
+  }
 }
 
 .summary {
-    text-align: justify;
-    line-height: 1.2;
+  text-align: justify;
+  line-height: 1.2;
 }
 
 .btnsContainer {
-    display: flex;
-    gap: 30px;
-    justify-content: space-evenly;
+  display: flex;
+  gap: 30px;
+  justify-content: space-evenly;
 }

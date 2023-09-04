@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { AiOutlineStar, AiOutlineClockCircle } from "react-icons/ai";
 import { BiCameraMovie } from "react-icons/bi";
 import { GetServerSideProps } from "next";
@@ -27,7 +27,7 @@ import { selectUserId } from "../../../app/state/auth/authSlice";
 import axios from "axios";
 
 const mockVideoUrl =
-  "https://imdb-video.media-imdb.com/vi1789248793/1434659607842-pgv4ql-1666275243113.mp4?Expires=1687546119&Signature=dazWMauFcRODJczaaUNG2GtodLZXdWgSuL~9OFGxnJ9I7lJBCdZAil4hiAwgoKypnOcAJKjVEV4ynC8qo0pc4MyZ3BK3gV6elLaG47XPC6edJ0jsY6Q-lsJiSg6BJms1sP5Plj2ueg~ur6ugr0x4icxQ5U~ncNSA6MHxpAsh6hlrggaJeJ8VTe8UlgYjLcrRDPL3CrOjA~vfOwDsZfiKENjVAws-~lc5SXiVdt~nPIiaxwcQ0A2022ifUB-VKsJ9ZKnnEmWoIZWbib6Rm9Ytr~pCkMs5snxuZplXPlkBtFERFZJck0TnaqKXvwpE0spIqIesei0aKgkv4AWjJzFcbA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA";
+  "https://imdb-video.media-imdb.com/vi1151780633/1434659607842-pgv4ql-1688563562149.mp4?Expires=1693932164&Signature=DHIbJmP1t2THl6S8i56YnT8Ne9Cr9Mlv0rEKe~~9hLCo8qpuAs~pkFzyODprjetD6urhCHHpiLHhNTH1WZHsFtWyPdRcF1LLp-uN53Qnu2azVmIe~ZfiKgR~nxzofQ~mWHUttJb3swTD4bfF2kQU7xWWKUg4G8JoNWk1hVmNuwH1WqhZkhPdrLoHhr1DajWxzLF9reJWitJ0DpA3goQC-yo5JlKFAAutCm0s8VJDKnrFWXriPYBcSaFKihXmU2vqOj5lp21NATjPfAcbnloR4nQOG9va~LTCfyyVmLEchbC2-z9K6~eRi8vpL9b84ioDFy50j0GB4mJZgY9KSg0urw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA";
 
 const MovieDetails = ({
   movieDetails,
@@ -51,7 +51,8 @@ const MovieDetails = ({
     id: movieId,
   } = movieDetails;
 
-  const movieInFavorites = favorites.includes(movieId!);
+  // const movieInFavorites = favorites.includes(movieId!);
+  const movieInFavorites = false;
 
   const onPlayVideo = () => {
     dispatch(setPlayVideo(false));

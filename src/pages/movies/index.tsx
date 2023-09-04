@@ -19,6 +19,7 @@ interface BrowseProps {
 }
 
 const Movies: NextPage<BrowseProps> = ({ genresList }) => {
+  console.log("genre data in Component-->", ...genresList);
   const [genres, setGenres] = useState<MovieDetailsProps["genre"]>([
     "All Movies",
     ...genresList,
@@ -106,6 +107,7 @@ export const getStaticProps = async () => {
   // getting API genres list
   const genresListResponse = await axios.get(API.getGenresList);
   const { data: genresList } = genresListResponse.data;
+  console.log("genre data getStaticProps -->", genresList);
 
   return {
     props: {
