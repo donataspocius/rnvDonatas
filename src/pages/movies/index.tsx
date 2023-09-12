@@ -18,16 +18,27 @@ interface BrowseProps {
   genresList: string[];
 }
 
-const Movies: NextPage<BrowseProps> = ({ genresList }) => {
-  console.log("genre data in Component-->", ...genresList);
-  const [genres, setGenres] = useState<MovieDetailsProps["genre"]>([
-    "All Movies",
-    ...genresList,
-  ]);
+const Movies: NextPage<BrowseProps> = () => {
+  const [genres, setGenres] = useState<MovieDetailsProps["genre"]>([]);
   const [currentGenre, setCurrentGenre] = useState("All Movies");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(15);
   const [totalPages, setTotalPages] = useState(1);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const genresListResponse = await axios.get(API.getGenresList);
+        const { data: genresList } = genresListResponse.data;
+
+        setGenres(["All Movies", ...genresList]);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleGenreSelection = (e: React.MouseEvent) => {
     const genre = e.currentTarget.textContent;
@@ -43,7 +54,7 @@ const Movies: NextPage<BrowseProps> = ({ genresList }) => {
     setCurrentPage(pageNumber);
   };
 
-  //     // getting movies data (allMovies or by genre)
+  // getting movies data (allMovies or by genre)
   const APIendpoint =
     currentGenre === "All Movies"
       ? API.getAllMovies(currentPage, itemsPerPage)
@@ -102,16 +113,3 @@ const Movies: NextPage<BrowseProps> = ({ genresList }) => {
 };
 
 export default Movies;
-
-export const getStaticProps = async () => {
-  // getting API genres list
-  const genresListResponse = await axios.get(API.getGenresList);
-  const { data: genresList } = genresListResponse.data;
-  console.log("genre data getStaticProps -->", genresList);
-
-  return {
-    props: {
-      genresList: genresList,
-    },
-  };
-};

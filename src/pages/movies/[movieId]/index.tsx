@@ -1,16 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-// import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { AiOutlineStar, AiOutlineClockCircle } from "react-icons/ai";
 import { BiCameraMovie } from "react-icons/bi";
-import { GetServerSideProps } from "next";
 
 import Button from "../../../app/components/Button/Button";
 import VideoModal from "../../../app/components/VideoModal/VideoModal";
 import style from "./MovieDetails.module.scss";
-import useFetchData from "../../../app/utils/customHooks";
 import { API } from "../../../app/constants/web_constants/appConstants";
-import LoadingSpinner from "../../../app/components/LoadingSpinner/LoadingSpinner";
-import ErrorElement from "../../../app/components/ErrorElement/ErrorElement";
+
 import {
   addToFavorites,
   removeFromFavorites,
@@ -18,38 +15,52 @@ import {
   selectPlayVideo,
   setPlayVideo,
 } from "../../../app/state/content/contentSlice";
-import {
-  MovieCardProps,
-  MovieDetailsProps,
-} from "../../../app/constants/web_constants/types";
+import { MovieCardProps } from "../../../app/constants/web_constants/types";
 import MoviesList from "../../../app/components/MoviesList/MoviesList";
 import { selectUserId } from "../../../app/state/auth/authSlice";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const mockVideoUrl =
-  "https://imdb-video.media-imdb.com/vi1151780633/1434659607842-pgv4ql-1688563562149.mp4?Expires=1693932164&Signature=DHIbJmP1t2THl6S8i56YnT8Ne9Cr9Mlv0rEKe~~9hLCo8qpuAs~pkFzyODprjetD6urhCHHpiLHhNTH1WZHsFtWyPdRcF1LLp-uN53Qnu2azVmIe~ZfiKgR~nxzofQ~mWHUttJb3swTD4bfF2kQU7xWWKUg4G8JoNWk1hVmNuwH1WqhZkhPdrLoHhr1DajWxzLF9reJWitJ0DpA3goQC-yo5JlKFAAutCm0s8VJDKnrFWXriPYBcSaFKihXmU2vqOj5lp21NATjPfAcbnloR4nQOG9va~LTCfyyVmLEchbC2-z9K6~eRi8vpL9b84ioDFy50j0GB4mJZgY9KSg0urw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA";
+  "https://imdb-video.media-imdb.com/vi1816511513/1434659607842-pgv4ql-1685659017307.mp4?Expires=1694645055&Signature=RNJe5-enXbiuAiOVO0srtBMl4peRgPLYCIiyKG~Ry3-Ov8bqMgpKtamn-kVga9XuruCvaIqxY3udJWcZAakl4mtJxlI6Cve7vV1Lg1ojzUsMpm0cJVHhcTt0mxyzdEle~uuEMyeaxj49HiyVuI1to5IUbJgMemp7-KEa~EaVNof~oZnoLec9fxq6ZmVMZkYVDKhuFEuXjzQ2w7PgY8EMH5yv1ptuKkxmd7oVPS5GjoyHGo92-2iGZRLSqwnGk9RsvfYsFhJ8F75F~yCJFPvALUMcWbSkIaSgvN58Eg0kgJ-TMzTUelfmRB4aU6AQg1UYwLEORv9dMrVtSyAnaN~ghA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA";
 
-const MovieDetails = ({
-  movieDetails,
-}: {
-  movieDetails: MovieDetailsProps;
-}) => {
+const MovieDetails = () => {
+  const [movieData, setMovieData] = useState<any>();
+
   const dispatch = useDispatch();
   const playVideo = useSelector(selectPlayVideo);
   const favorites = useSelector(selectContentFavoriteMovies);
   const userId = useSelector(selectUserId);
 
-  const {
-    genre,
-    duration,
-    posterUrl,
-    rating,
-    summary,
-    title,
-    videoUrl,
-    year,
-    id: movieId,
-  } = movieDetails;
+  const router = useRouter();
+  const movieId = Array.isArray(router.query.movieId)
+    ? router.query.movieId[0]
+    : router.query.movieId || "";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          API.getMovieDetailsById(movieId as string)
+        );
+        const { data } = response.data;
+
+        setMovieData(data[0]);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    // Call the async function
+    fetchData();
+  }, []);
+
+  if (!movieData) {
+    return;
+  }
+
+  const { genre, duration, posterUrl, rating, summary, title, videoUrl, year } =
+    movieData;
 
   // const movieInFavorites = favorites.includes(movieId!);
   const movieInFavorites = false;
@@ -60,14 +71,13 @@ const MovieDetails = ({
 
   const handleAddToFavorites = () => {
     const movieData: MovieCardProps = { id: movieId ?? "", posterUrl, title };
-
     movieInFavorites
       ? dispatch(removeFromFavorites(movieData))
       : dispatch(addToFavorites(movieData));
   };
   return (
     <>
-      {
+      {movieData && (
         <>
           <div className={style.mainContainer}>
             <div className={style.imgContainer}>
@@ -124,26 +134,9 @@ const MovieDetails = ({
             movieId={movieId || ""}
           />
         </>
-      }
-      {/* {error && <ErrorElement error={error} />}
-            {isLoading && <LoadingSpinner />} */}
+      )}
     </>
   );
 };
 
 export default MovieDetails;
-
-export const getServerSideProps: GetServerSideProps<any> = async (ctx) => {
-  // extracting movieId
-  const { movieId } = ctx.query;
-
-  // getting movie details
-  const response = await axios.get(API.getMovieDetailsById(movieId as string));
-  const { data } = response.data;
-
-  return {
-    props: {
-      movieDetails: data[0],
-    },
-  };
-};
